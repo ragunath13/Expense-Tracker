@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+
+
+    <style>
+        
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+
+            body {
+                background: #F5F7FB;
+                min-height: 100vh;
+                display: flex;
+                padding: 40px 20px;
+                justify-content: center;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            }
+
+
+            .app-layout {
+                width: 100%;
+                max-width: 1200px;
+                display: grid;
+                grid-template-columns: 3fr 2fr; 
+                gap: 40px;
+            }
+
+
+            .left-panel {
+                display: flex;
+                flex-direction: column;
+                gap: 30px;
+            }
+
+
+            .right-panel {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+            }
+
+
+            .Header-box {
+                display: flex;
+                justify-content: flex-start;
+            }
+
+            .Heading {
+                font-size: 48px;
+                font-weight: bolder;
+                color: #4F46E5;
+            }
+
+
+            .Balance-box {
+                width: 100%;
+                height: 150px;
+                background: #ffffff;
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+                border-radius: 12px;
+                display: grid;
+                grid-template-rows: 1fr 2fr;
+                
+            }
+
+            .Balance-text {
+                font-size: 26px;
+                color: #868686;
+                text-align: center;
+                padding-top: 12px;
+            }
+
+            .Amount {
+            
+                font-weight: bolder;
+                color: #202020;
+                text-align: center;
+                padding-top: 10px;
+                font-size: 48px;
+                font-family: Georgia, 'Times New Roman', Times, serif;
+            }
+
+
+            .profit-loss-box {
+                width: 100%;
+                height: 150px;
+                background: #ffffff;
+                border-radius: 12px;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: 1fr 2fr;
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            }
+
+            .savings-box {
+                background: #39A739;
+                border-top-left-radius: 12px;
+                color: #ffffff;
+                text-align: center;
+                padding-top: 10px;
+                font-size: 22px;
+            }
+
+            .expense-box {
+                background: #E75530;
+                border-top-right-radius: 12px;
+                color: #ffffff;
+                text-align: center;
+                padding-top: 10px;
+                font-size: 22px;
+            }
+
+            .savings-amount {
+                color: #39A739;
+                font-size: 30px;
+                font-weight: bold;
+                text-align: center;
+                padding-top: 25px;
+                font-family: Georgia, 'Times New Roman', Times, serif;
+            }
+
+            .expense-amount {
+                color: #E75530;
+                font-size: 30px;
+                font-weight: bold;
+                text-align: center;
+                padding-top: 25px;
+                font-family: Georgia, 'Times New Roman', Times, serif;
+            }
+
+            .heading-input-box {
+                font-size: 32px;
+                font-weight: bold;
+                color: #6B7280;
+                margin-bottom:30px;
+            }
+
+            .input-box {
+                width: 100%;
+                background: #ffffff;
+                border-radius: 12px;
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+                padding-bottom: 30px;
+            }
+
+
+            .label {
+                display: block;
+                margin: 25px 30px 5px;
+                font-size: 20px;
+                font-weight: bold;
+                color: #1F2937;
+            }
+
+            .input {
+                width: calc(100% - 60px);
+                height: 45px;
+                margin: 0 30px;
+                border-radius: 6px;
+                border: 1px solid #CBD5E1;
+                padding-left: 12px;
+                font-size: 18px;
+                outline: none;
+            }
+
+            .input:focus {
+                border-color: #4F46E5;
+            }
+
+            .hint {
+                margin: 8px 30px 0;
+                font-size: 15px;
+                color: #6B7280;
+            }
+
+                
+            .add-btn {
+                width: calc(100% - 60px);
+                height: 50px;
+                margin: 25px 30px 0;
+                background: linear-gradient(180deg, #4F46E5, #4338CA);
+                color: #ffffff;
+                font-size: 20px;
+                font-weight: bold;
+                border: none;
+                border-radius: 8px;
+                cursor: pointer;
+            }
+
+            .add-btn:hover {
+                opacity: 0.9;
+            }
+
+
+            .history-box {
+                width: 100%;
+                background: #ffffff;
+                border-radius: 12px;
+                box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+                padding: 25px;
+            }
+
+            .history-heading {
+                font-size: 28px;
+                font-weight: bold;
+                color: #1F2937;
+                margin-bottom: 20px;
+            }
+
+            .history-list {
+                list-style: none;
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .history-list li {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 12px 15px;
+                border-radius: 8px;
+                font-size: 18px;
+                background: #F9FAFB;
+            }
+
+            .income-item {
+                border-right: 6px solid #39A739;
+                color: #39A739;
+            }
+
+            .expense-item {
+                border-right: 6px solid #E75530;
+                color: #E75530;
+            }
+
+    </style>
+</head>
+<body>
+
+<div class="app-layout">
+
+
+    <div class="left-panel">
+        <div class="Header-box">
+            <h1 class="Heading">Expense Tracker</h1>
+        </div>
+
+        <div class="content-box">
+            <div class="Balance-box">
+                <div class="Balance-text">Your Balance</div>
+                <div class="Amount jsBalance">$ 0</div>
+            </div>
+        </div>
+
+        <div class="profit-loss-box">
+            <div class="savings-box">INCOME</div>
+            <div class="expense-box">EXPENSE</div>
+            <div class="savings-amount jsProfit">$ 0</div>
+            <div class="expense-amount jsLosses">$ 0</div>
+        </div>
+    </div>
+
+
+    <div class="right-panel">
+        <div class="heading-input-box">Add New Transaction</div>
+
+        <div class="input-box">
+            <label class="label">Text</label>
+            <input type="text" class="input js-input-text" placeholder="Enter description">
+
+            <label class="label">Amount</label>
+            <input type="text" class="input js-input" placeholder="Enter amount">
+
+            <p class="hint">(negative - expense, positive - income)</p>
+
+            <button class="add-btn js-buttonPress" onclick="jsTransactionButton()">Add Transaction</button>
+        </div>
+    </div>
+    <div class="history-box">
+        <h2 class="history-heading">History</h2>
+
+        <ul class="history-list display_history_list">
+
+
+
+            <!-- <li class="income-item">Salary <span>+ $5000</span></li>
+            <li class="expense-item">Food <span>- $300</span></li>
+            <li class="expense-item">Movie <span>- $200</span></li> -->
+        </ul>
+    </div>
+</div>
+
+<script>
+    
+        let savings = 0;
+        let expenses = 0;
+        let balance = 0;
+
+        const ProfitElement = document.querySelector(".jsProfit");
+        const LossElement = document.querySelector(".jsLosses");
+        const BalaceElement = document.querySelector(".jsBalance");
+
+
+        const amountInput = document.querySelector(".js-input");
+        const textInput = document.querySelector(".js-input-text");
+
+        amountInput.addEventListener("keydown", handleEnter);
+        textInput.addEventListener("keydown", handleEnter);
+
+        function handleEnter(event) {
+            if (event.key === "Enter") {
+                jsTransactionButton();
+            }
+        }
+
+
+        const outerList = [];
+        function jsTransactionButton()
+        {
+            const InnerList = [];
+            const description = document.querySelector(".js-input-text").value;
+            const amount = Number(document.querySelector(".js-input").value);
+            if (amount<0)
+            {
+                expenses+=Math.abs(amount);
+                InnerList.push(description);
+                InnerList.push(amount);
+            }
+            else if (amount>0)
+            {
+
+                savings+=amount;
+                InnerList.push(description);
+                InnerList.push(amount);
+            }
+        outerList.push(InnerList);
+        console.log(outerList);
+
+        document.querySelector('.js-input').value=null;
+        document.querySelector('.js-input-text').value=null;
+
+            balance=savings-expenses;
+
+            ProfitElement.textContent = `$${savings}`;
+            LossElement.textContent = `$${expenses}`;
+            BalaceElement.textContent = `$${balance}`;
+
+
+            showingHistory();
+        }
+
+
+
+        function showingHistory()
+        {
+            let showDes = '';
+            for(let i =0 ;i<outerList.length ;i++){
+                const descrip = outerList[i][0];
+                const amt = outerList[i][1];
+                if(Number(amt)>0){
+                    showDes+= `<li class="income-item">${descrip}<span> ${amt}</span></li>`;
+                }
+                else if(Number(amt)<0)
+                {
+                    showDes+=`<li class="expense-item">${descrip}<span> ${amt}</span></li>`;
+                }
+                
+            }
+
+            document.querySelector(".display_history_list").innerHTML=showDes;
+        }
+
+        const act= document.querySelector(".js-buttonPress");
+        act.addEventListener("keydown", doaction);
+
+        function doaction(event)
+        {
+            if(event.key === 'Enter')
+            {
+                jsTransactionButton();
+            }
+        }
+</script>
+</body>
+
+</html>
